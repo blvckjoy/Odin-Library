@@ -1,0 +1,152 @@
+/* General Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ddd;
+  color: #333;
+}
+
+.library {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+header {
+  width: 100%;
+  background-color: #3b5998;
+  color: white;
+  text-align: center;
+  padding: 1.5em 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+#newBookBtn,
+#addBtn {
+  margin: 20px;
+  font-size: 1.2em;
+  font-weight: 500;
+  background-color: #20b2aa;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+/* Dialog and Form */
+dialog {
+  width: 400px;
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  color: #333;
+  overflow: hidden;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+#closeBtn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Book Card Styling */
+#cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.card h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #3b5998;
+}
+
+.card p {
+  margin: 10px 0;
+}
+
+.card p strong {
+  color: #555;
+}
+
+.delete,
+.toggle {
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.toggle {
+  margin-right: 10px;
+  background-color: #20b2aa;
+}
+
+.delete {
+  background-color: #ec7070;
+}
+
+/* Hover Effect */
+.card:hover,
+#newBookBtn:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}

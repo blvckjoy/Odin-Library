@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Library</title>
+  </head>
+  <body>
+    <div class="library">
+      <header>
+        <h1>My Book Library</h1>
+      </header>
+
+      <button type="button" id="newBookBtn">New Book</button>
+
+      <dialog>
+        <button type="button" id="closeBtn" autofocus>X</button>
+        <form action="#">
+          <div class="author">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" />
+          </div>
+
+          <div class="title">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" />
+          </div>
+
+          <div class="pages">
+            <label for="pages">Pages:</label>
+            <input type="number" id="pages" name="pages" min="0" />
+          </div>
+
+          <div class="read">
+            <label for="read">Read</label>
+            <input type="checkbox" id="read" name="read" />
+          </div>
+
+          <button type="button" id="addBtn">Add book</button>
+        </form>
+      </dialog>
+      <div id="cards-container"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
