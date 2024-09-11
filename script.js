@@ -19,7 +19,6 @@ closeBtn.addEventListener("click", () => {
   dialog.close();
 });
 
-////
 const myLibrary = [];
 
 function Book(title, author, pages, hasRead) {
