@@ -1,3 +1,80 @@
+class Book {
+  constructor(title, author, pages, hasRead) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.hasRead = hasRead;
+  }
+
+  toggleStatus() {
+    this.hasRead = !this.hasRead;
+  }
+}
+
+class Library {
+  constructor() {
+    this.books = [];
+  }
+
+  addBook(book) {
+    this.books.push(book);
+  }
+
+  removeBook(index) {
+    this.books.splice(index, 1);
+  }
+
+  renderLibrary() {
+    cardsContainer.innerHTML = "";
+    this.books.forEach((book, index) => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+
+      const titleElement = document.createElement("h2");
+      titleElement.textContent = book.title;
+
+      const authorElement = document.createElement("p");
+      authorElement.textContent = `Author: ${book.author}`;
+
+      const pagesElement = document.createElement("p");
+      pagesElement.textContent = `Pages: ${book.pages}`;
+
+      const statusElement = document.createElement("p");
+      statusElement.textContent = `Status: ${
+        book.hasRead ? "Read" : "Has not read"
+      }`;
+
+      const toggleStatusBtn = document.createElement("button");
+      toggleStatusBtn.classList.add("toggle");
+      toggleStatusBtn.textContent = "Toggle status";
+      toggleStatusBtn.addEventListener("click", () => {
+        book.toggleStatus();
+        this.renderLibrary();
+      });
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.classList.add("delete");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.addEventListener("click", () => {
+        this.removeBook(index);
+        this.renderLibrary();
+      });
+
+      card.appendChild(titleElement);
+      card.appendChild(authorElement);
+      card.appendChild(pagesElement);
+      card.appendChild(statusElement);
+      card.appendChild(toggleStatusBtn);
+      card.appendChild(deleteBtn);
+
+      cardsContainer.appendChild(card);
+    });
+  }
+}
+
+const library = new Library();
+
+// Select DOM elements
 const dialog = document.querySelector("dialog");
 const newBookBtn = document.querySelector("#newBookBtn");
 const addBtn = document.querySelector("#addBtn");
@@ -19,20 +96,6 @@ closeBtn.addEventListener("click", () => {
   dialog.close();
 });
 
-const myLibrary = [];
-
-function Book(title, author, pages, hasRead) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.hasRead = hasRead;
-}
-
-function addBookToLibrary(title, author, pages, hasRead) {
-  const newBook = new Book(title, author, pages, hasRead);
-  myLibrary.push(newBook);
-}
-
 addBtn.addEventListener("click", e => {
   e.preventDefault();
   const userTitle = titleElement.value;
@@ -40,61 +103,14 @@ addBtn.addEventListener("click", e => {
   const userPages = pagesElement.value;
   const userHasRead = hasReadElement.checked;
 
-  addBookToLibrary(userTitle, userAuthor, userPages, userHasRead);
-  renderLibrary();
+  const newBook = new Book(userTitle, userAuthor, userPages, userHasRead);
+  library.addBook(newBook);
+  library.renderLibrary();
   resetForm();
   dialog.close();
 });
 
-function renderLibrary() {
-  cardsContainer.innerHTML = "";
-
-  myLibrary.forEach((book, index) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
-
-    const titleElement = document.createElement("h2");
-    titleElement.textContent = book.title;
-
-    const authorElement = document.createElement("p");
-    authorElement.textContent = `Author: ${book.author}`;
-
-    const pagesElement = document.createElement("p");
-    pagesElement.textContent = `Pages: ${book.pages}`;
-
-    const statusElement = document.createElement("p");
-    statusElement.textContent = `Status: ${
-      book.hasRead ? "Read" : "Has not read"
-    }`;
-
-    const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("delete");
-    deleteBtn.textContent = "Delete";
-    deleteBtn.addEventListener("click", () => {
-      myLibrary.splice(index, 1);
-      renderLibrary();
-    });
-
-    const toggleStatusBtn = document.createElement("button");
-    toggleStatusBtn.classList.add("toggle");
-    toggleStatusBtn.textContent = "Toggle status";
-    toggleStatusBtn.addEventListener("click", () => {
-      book.hasRead = !book.hasRead;
-      renderLibrary();
-    });
-
-    card.appendChild(titleElement);
-    card.appendChild(authorElement);
-    card.appendChild(pagesElement);
-    card.appendChild(statusElement);
-    card.appendChild(toggleStatusBtn);
-    card.appendChild(deleteBtn);
-
-    cardsContainer.appendChild(card);
-  });
-}
-
-// remove all previous inputs
+// Reset form inputs
 function resetForm() {
   titleElement.value = "";
   authorElement.value = "";
