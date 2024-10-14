@@ -2,10 +2,10 @@
 
 This is a basic library application built with HTML, CSS, and JavaScript. The application allows users to:
 
-- Add new books to the library.
-- Display the list of books.
-- Toggle the read status of each book.
-- Delete books from the library.
+-  Add new books to the library.
+-  Display the list of books.
+-  Toggle the read status of each book.
+-  Delete books from the library.
 
 ## Features
 
@@ -24,3 +24,8 @@ This is a basic library application built with HTML, CSS, and JavaScript. The ap
 **Encapsulation of behavior**: The Library class handles all operations (adding, removing, rendering books), making the code more modular and easier to maintain.
 
 **Simplified event listeners**: The button actions now interact with the class methods.
+
+**Form Validation**: Added client-side form validation to ensure all fields are filled out correctly before submitting a new book. This includes:
+
+-  Checking that title, author and pages fields are not empty.
+-  Verifying that the number of pages is a positive integer if field is not empty.
